@@ -9,11 +9,11 @@
 		<relativePath />
 	</parent>
 
-	<groupId>sc.fiji</groupId>
-	<artifactId>TrackMate-Cellpose</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<groupId>fiji.plugin.trackmate.cellpose.tbonte</groupId>
+	<artifactId>Custom-TrackMate-Cellpose</artifactId>
+	<version>1</version>
 
-	<name>TrackMate-Cellpose</name>
+	<name>Custom-TrackMate-Cellpose</name>
 	<description>TrackMate detector based on Cellpose.</description>
 	<url>https://github.com/trackmate-sc/TrackMate-Cellpose</url>
 	<inceptionYear>2021</inceptionYear>
@@ -89,7 +89,7 @@
 		<dependency>
 			<groupId>sc.fiji</groupId>
 			<artifactId>TrackMate</artifactId>
-			<version>7.9.1</version>
+			<version>7.10.0</version>
 		</dependency>
 
 		<!-- ImageJ dependencies -->
