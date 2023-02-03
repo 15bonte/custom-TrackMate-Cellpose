@@ -87,6 +87,10 @@ public class CellposeDetectorConfigurationPanel extends ConfigurationPanel
 	private static final ImageIcon ICON = CellposeUtils.logo64();
 
 	private static final NumberFormat DIAMETER_FORMAT = new DecimalFormat( "#.#" );
+	
+	private static final NumberFormat FLOW_THRESHOLD_FORMAT = new DecimalFormat( "#.#" );
+	
+	private static final NumberFormat CELLPROB_THRESHOLD_FORMAT = new DecimalFormat( "#.#" );
 
 	protected static final String DOC1_URL = "https://imagej.net/plugins/trackmate/trackmate-cellpose";
 
@@ -111,6 +115,12 @@ public class CellposeDetectorConfigurationPanel extends ConfigurationPanel
 	private final JTextField tfCustomPath;
 
 	private final JButton btnBrowseCustomModel;
+	
+	private final JFormattedTextField ftfFlowThreshold;
+	
+	private final JFormattedTextField ftfCellprobThreshold;
+	
+	private final JCheckBox chckbxAugment;
 
 	public CellposeDetectorConfigurationPanel( final Settings settings, final Model model )
 	{
@@ -361,6 +371,62 @@ public class CellposeDetectorConfigurationPanel extends ConfigurationPanel
 		gbcChckbxUseGPU.gridx = 0;
 		gbcChckbxUseGPU.gridy = 10;
 		add( chckbxUseGPU, gbcChckbxUseGPU );
+		
+		/*
+		 * Flow threshold.
+		 */
+
+		final JLabel lblFlowThreshold = new JLabel( "Flow threshold:" );
+		lblFlowThreshold.setFont( SMALL_FONT );
+		final GridBagConstraints gbcLblFlowThreshold = new GridBagConstraints();
+		gbcLblFlowThreshold.anchor = GridBagConstraints.EAST;
+		gbcLblFlowThreshold.insets = new Insets( 0, 5, 5, 5 );
+		gbcLblFlowThreshold.gridx = 0;
+		gbcLblFlowThreshold.gridy = 11;
+		add( lblFlowThreshold, gbcLblFlowThreshold );
+
+		ftfFlowThreshold = new JFormattedTextField( FLOW_THRESHOLD_FORMAT );
+		ftfFlowThreshold.setHorizontalAlignment( SwingConstants.CENTER );
+		ftfFlowThreshold.setFont( SMALL_FONT );
+		final GridBagConstraints gbcFtfFlowThreshold = new GridBagConstraints();
+		gbcFtfFlowThreshold.insets = new Insets( 0, 5, 5, 5 );
+		gbcFtfFlowThreshold.fill = GridBagConstraints.HORIZONTAL;
+		gbcFtfFlowThreshold.gridx = 1;
+		gbcFtfFlowThreshold.gridy = 11;
+		add( ftfFlowThreshold, gbcFtfFlowThreshold );
+		
+		/*
+		 * Cellprob threshold.
+		 */
+
+		final JLabel lblCellprobThreshold = new JLabel( "Cell probability threshold:" );
+		lblCellprobThreshold.setFont( SMALL_FONT );
+		final GridBagConstraints gbcLblCellprobThreshold = new GridBagConstraints();
+		gbcLblCellprobThreshold.anchor = GridBagConstraints.EAST;
+		gbcLblCellprobThreshold.insets = new Insets( 0, 5, 5, 5 );
+		gbcLblCellprobThreshold.gridx = 0;
+		gbcLblCellprobThreshold.gridy = 12;
+		add( lblCellprobThreshold, gbcLblCellprobThreshold );
+
+		ftfCellprobThreshold = new JFormattedTextField( CELLPROB_THRESHOLD_FORMAT );
+		ftfCellprobThreshold.setHorizontalAlignment( SwingConstants.CENTER );
+		ftfCellprobThreshold.setFont( SMALL_FONT );
+		final GridBagConstraints gbcFtfCellprobThreshold = new GridBagConstraints();
+		gbcFtfCellprobThreshold.insets = new Insets( 0, 5, 5, 5 );
+		gbcFtfCellprobThreshold.fill = GridBagConstraints.HORIZONTAL;
+		gbcFtfCellprobThreshold.gridx = 1;
+		gbcFtfCellprobThreshold.gridy = 12;
+		add( ftfCellprobThreshold, gbcFtfCellprobThreshold );
+		
+		chckbxAugment = new JCheckBox( "Augment:" );
+		chckbxAugment.setHorizontalTextPosition( SwingConstants.LEFT );
+		chckbxAugment.setFont( SMALL_FONT );
+		final GridBagConstraints gbcChckbxAugment = new GridBagConstraints();
+		gbcChckbxAugment.anchor = GridBagConstraints.EAST;
+		gbcChckbxAugment.insets = new Insets( 0, 0, 0, 5 );
+		gbcChckbxAugment.gridx = 0;
+		gbcChckbxAugment.gridy = 13;
+		add( chckbxAugment, gbcChckbxAugment );
 
 		/*
 		 * Preview.
@@ -453,6 +519,9 @@ public class CellposeDetectorConfigurationPanel extends ConfigurationPanel
 		ftfDiameter.setValue( settings.get( KEY_CELL_DIAMETER ) );
 		chckbxUseGPU.setSelected( ( boolean ) settings.get( KEY_USE_GPU ) );
 		chckbxSimplify.setSelected( ( boolean ) settings.get( KEY_SIMPLIFY_CONTOURS ) );
+		ftfFlowThreshold.setValue( settings.get( KEY_FLOW_THRESHOLD ) );
+		ftfCellprobThreshold.setValue( settings.get( KEY_CELLPROB_THRESHOLD ) );
+		chckbxAugment.setSelected( ( boolean ) settings.get( KEY_AUGMENT ) );
 	}
 
 	@Override
@@ -471,6 +540,14 @@ public class CellposeDetectorConfigurationPanel extends ConfigurationPanel
 		settings.put( KEY_CELL_DIAMETER, diameter );
 		settings.put( KEY_SIMPLIFY_CONTOURS, chckbxSimplify.isSelected() );
 		settings.put( KEY_USE_GPU, chckbxUseGPU.isSelected() );
+		
+		final double flowThreshold = ( ( Number ) ftfFlowThreshold.getValue() ).doubleValue();
+		settings.put( KEY_FLOW_THRESHOLD, flowThreshold );
+		
+		final double cellprobThreshold = ( ( Number ) ftfCellprobThreshold.getValue() ).doubleValue();
+		settings.put( KEY_CELLPROB_THRESHOLD, cellprobThreshold );
+		
+		settings.put( KEY_AUGMENT, chckbxAugment.isSelected() );
 
 		settings.put( KEY_LOGGER, logger );
 

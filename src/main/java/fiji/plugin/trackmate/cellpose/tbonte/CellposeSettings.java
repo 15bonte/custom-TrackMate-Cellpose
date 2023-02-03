@@ -43,6 +43,12 @@ public class CellposeSettings
 	public final boolean useGPU;
 
 	public final boolean simplifyContours;
+	
+	public final double flowThreshold;
+	
+	public final double cellprobThreshold;
+	
+	public final boolean augment;
 
 
 	public CellposeSettings(
@@ -53,7 +59,10 @@ public class CellposeSettings
 			final int chan2,
 			final double diameter,
 			final boolean useGPU,
-			final boolean simplifyContours )
+			final boolean simplifyContours,
+			final double flowThreshold,
+			final double cellprobThreshold,
+			final boolean augment )
 	{
 		this.cellposePythonPath = cellposePythonPath;
 		this.model = model;
@@ -63,6 +72,9 @@ public class CellposeSettings
 		this.diameter = diameter;
 		this.useGPU = useGPU;
 		this.simplifyContours = simplifyContours;
+		this.flowThreshold = flowThreshold;
+		this.cellprobThreshold = cellprobThreshold;
+		this.augment = augment;
 	}
 
 	public List< String > toCmdLine( final String imagesDir )
@@ -115,6 +127,18 @@ public class CellposeSettings
 		// Diameter.
 		cmd.add( "--diameter" );
 		cmd.add( ( diameter > 0 ) ? "" + diameter : "0" );
+		
+		// Flow threshold.
+		cmd.add( "--flow_threshold" );
+		cmd.add( "" + flowThreshold );
+		
+		// Flow threshold.
+		cmd.add( "--cellprob_threshold" );
+		cmd.add( "" + cellprobThreshold );
+		
+		// Augment.
+		if ( augment )
+			cmd.add( "--augment" );
 
 		// Model.
 		cmd.add( "--pretrained_model" );
@@ -155,6 +179,12 @@ public class CellposeSettings
 		private boolean simplifyContours = true;
 
 		private String customModelPath = "";
+		
+		private double flowThreshold = 0.4;
+		
+		private double cellprobThreshold = 0.;
+		
+		private boolean augment = false;
 
 		public Builder channel1( final int ch )
 		{
@@ -197,6 +227,24 @@ public class CellposeSettings
 			this.simplifyContours = simplifyContours;
 			return this;
 		}
+		
+		public Builder flowThreshold( final double flowThreshold )
+		{
+			this.flowThreshold = flowThreshold;
+			return this;
+		}
+		
+		public Builder cellprobThreshold( final double cellprobThreshold )
+		{
+			this.cellprobThreshold = cellprobThreshold;
+			return this;
+		}
+		
+		public Builder augment( final boolean augment )
+		{
+			this.augment = augment;
+			return this;
+		}
 
 		public Builder customModel( final String customModelPath )
 		{
@@ -214,7 +262,10 @@ public class CellposeSettings
 					chan2,
 					diameter,
 					useGPU,
-					simplifyContours );
+					simplifyContours,
+					flowThreshold,
+					cellprobThreshold,
+					augment);
 		}
 
 	}
