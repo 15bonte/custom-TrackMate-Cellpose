@@ -2,7 +2,7 @@
  * #%L
  * TrackMate: your buddy for everyday tracking.
  * %%
- * Copyright (C) 2021 - 2022 TrackMate developers.
+ * Copyright (C) 2021 - 2023 TrackMate developers.
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -19,15 +19,18 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-package fiji.plugin.trackmate.cellpose;
+package fiji.plugin.trackmate.cellpose.tbonte;
 
-import static fiji.plugin.trackmate.cellpose.CellposeDetectorFactory.KEY_CELLPOSE_CUSTOM_MODEL_FILEPATH;
-import static fiji.plugin.trackmate.cellpose.CellposeDetectorFactory.KEY_CELLPOSE_MODEL;
-import static fiji.plugin.trackmate.cellpose.CellposeDetectorFactory.KEY_CELLPOSE_PYTHON_FILEPATH;
-import static fiji.plugin.trackmate.cellpose.CellposeDetectorFactory.KEY_CELL_DIAMETER;
-import static fiji.plugin.trackmate.cellpose.CellposeDetectorFactory.KEY_LOGGER;
-import static fiji.plugin.trackmate.cellpose.CellposeDetectorFactory.KEY_OPTIONAL_CHANNEL_2;
-import static fiji.plugin.trackmate.cellpose.CellposeDetectorFactory.KEY_USE_GPU;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_CELLPOSE_CUSTOM_MODEL_FILEPATH;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_CELLPOSE_MODEL;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_CELLPOSE_PYTHON_FILEPATH;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_CELL_DIAMETER;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_LOGGER;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_OPTIONAL_CHANNEL_2;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_USE_GPU;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_FLOW_THRESHOLD;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_CELLPROB_THRESHOLD;
+import static fiji.plugin.trackmate.cellpose.tbonte.CellposeDetectorFactory.KEY_AUGMENT;
 import static fiji.plugin.trackmate.detection.DetectorKeys.KEY_TARGET_CHANNEL;
 import static fiji.plugin.trackmate.detection.ThresholdDetectorFactory.KEY_SIMPLIFY_CONTOURS;
 import static fiji.plugin.trackmate.gui.Fonts.BIG_FONT;
@@ -67,7 +70,7 @@ import javax.swing.SwingConstants;
 import fiji.plugin.trackmate.Logger;
 import fiji.plugin.trackmate.Model;
 import fiji.plugin.trackmate.Settings;
-import fiji.plugin.trackmate.cellpose.CellposeSettings.PretrainedModel;
+import fiji.plugin.trackmate.cellpose.tbonte.CellposeSettings.PretrainedModel;
 import fiji.plugin.trackmate.gui.components.ConfigurationPanel;
 import fiji.plugin.trackmate.util.DetectionPreview;
 import fiji.plugin.trackmate.util.FileChooser;

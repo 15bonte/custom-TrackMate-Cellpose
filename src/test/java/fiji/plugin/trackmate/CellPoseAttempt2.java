@@ -23,8 +23,8 @@ package fiji.plugin.trackmate;
 
 import java.io.IOException;
 
-import fiji.plugin.trackmate.cellpose.CellposeDetector;
-import fiji.plugin.trackmate.cellpose.CellposeSettings;
+import fiji.plugin.trackmate.cellpose.tbonte.CellposeDetector;
+import fiji.plugin.trackmate.cellpose.tbonte.CellposeSettings;
 import fiji.plugin.trackmate.gui.displaysettings.DisplaySettingsIO;
 import fiji.plugin.trackmate.util.TMUtils;
 import fiji.plugin.trackmate.visualization.hyperstack.HyperStackDisplayer;

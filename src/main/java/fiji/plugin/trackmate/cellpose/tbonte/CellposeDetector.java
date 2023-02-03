@@ -2,7 +2,7 @@
  * #%L
  * TrackMate: your buddy for everyday tracking.
  * %%
- * Copyright (C) 2021 - 2022 TrackMate developers.
+ * Copyright (C) 2021 - 2023 TrackMate developers.
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -19,7 +19,7 @@
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-package fiji.plugin.trackmate.cellpose;
+package fiji.plugin.trackmate.cellpose.tbonte;
 
 import static fiji.plugin.trackmate.detection.DetectorKeys.DEFAULT_TARGET_CHANNEL;
 import static fiji.plugin.trackmate.detection.DetectorKeys.KEY_TARGET_CHANNEL;
@@ -56,7 +56,7 @@ import fiji.plugin.trackmate.Settings;
 import fiji.plugin.trackmate.Spot;
 import fiji.plugin.trackmate.SpotCollection;
 import fiji.plugin.trackmate.TrackMate;
-import fiji.plugin.trackmate.detection.LabeImageDetectorFactory;
+import fiji.plugin.trackmate.detection.LabelImageDetectorFactory;
 import fiji.plugin.trackmate.detection.SpotGlobalDetector;
 import fiji.plugin.trackmate.util.TMUtils;
 import ij.IJ;
@@ -292,7 +292,7 @@ public class CellposeDetector< T extends RealType< T > & NativeType< T > > imple
 
 		logger.log( "Converting masks to spots.\n" );
 		final Settings labelImgSettings = new Settings( output );
-		final LabeImageDetectorFactory< ? > labeImageDetectorFactory = new LabeImageDetectorFactory<>();
+		final LabelImageDetectorFactory< ? > labeImageDetectorFactory = new LabelImageDetectorFactory<>();
 		final Map< String, Object > detectorSettings = labeImageDetectorFactory.getDefaultSettings();
 		detectorSettings.put( KEY_TARGET_CHANNEL, DEFAULT_TARGET_CHANNEL );
 		detectorSettings.put( KEY_SIMPLIFY_CONTOURS, cellposeSettings.simplifyContours );
