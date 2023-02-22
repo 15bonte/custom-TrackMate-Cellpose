@@ -152,6 +152,9 @@ public class CellposeSettings
 
 		// Do not save Numpy files.
 		cmd.add( "--no_npy" );
+		
+		// Enable fast mode.
+		cmd.add( "--fast_mode" );
 
 		return Collections.unmodifiableList( cmd );
 	}
