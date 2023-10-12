@@ -151,10 +151,10 @@ public class CellposeDetectorFactory<T extends RealType<T> & NativeType<T>> impl
 	public static final String KEY_LOGGER = "LOGGER";
 
 	/** A string key identifying this factory. */
-	public static final String DETECTOR_KEY = "CELLPOSE_DETECTOR";
+	public static final String DETECTOR_KEY = "FAST_CELLPOSE_DETECTOR";
 
 	/** The pretty name of the target detector. */
-	public static final String NAME = "Cellpose detector";
+	public static final String NAME = "Fast Cellpose detector";
 
 	/** An html information text. */
 	public static final String INFO_TEXT = "<html>" + "This detector relies on cellpose to detect objects." + "<p>"
