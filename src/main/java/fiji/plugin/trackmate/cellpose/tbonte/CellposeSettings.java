@@ -135,10 +135,11 @@ public class CellposeSettings
 		// Flow threshold.
 		cmd.add( "--cellprob_threshold" );
 		cmd.add( "" + cellprobThreshold );
-		
-		// Augment.
-		if ( augment )
-			cmd.add( "--augment" );
+
+		// NB: this is commented as cellpose does not have augment in its command line arguments
+		// // Augment.
+		// if ( augment )
+		// 	cmd.add( "--augment" );
 
 		// Model.
 		cmd.add( "--pretrained_model" );
