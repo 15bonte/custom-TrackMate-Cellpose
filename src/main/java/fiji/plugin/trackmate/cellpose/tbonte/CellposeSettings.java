@@ -93,8 +93,7 @@ public class CellposeSettings
 			// Calling Cellpose from python.
 			cmd.add( cellposePythonPath );
 			cmd.add( "-m" );
-			// Call custom cellpose version (where augment can be enabled)
-			cmd.add( "custom-cellpose" );
+			cmd.add( "cellpose" );
 		}
 		else
 		{
